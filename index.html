@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recipe Shelf – Find, filter and save recipes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>try{var p=JSON.parse(localStorage.getItem("recipeShelf.theme"));document.documentElement.dataset.theme=p||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){}</script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <h1 class="brand">Recipe Shelf</h1>
+      <nav class="tabs" aria-label="Views">
+        <button class="tab is-active" data-view="discover" type="button">Discover</button>
+        <button class="tab" data-view="saved" type="button">Saved <span id="savedCount" class="count">0</span></button>
+      </nav>
+      <button id="themeBtn" class="theme" type="button" aria-label="Switch theme">◐</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h2>What are you cooking today?</h2>
+      <form id="searchForm" class="search" role="search">
+        <label class="sr" for="searchInput">Search recipes</label>
+        <input id="searchInput" type="search" placeholder="Try chicken, pasta, or cake (press / to focus)" autocomplete="off">
+        <button type="submit">Search</button>
+        <button id="randomBtn" class="btn-ghost surprise" type="button">Surprise me</button>
+      </form>
+    </section>
+
+    <section class="controls" aria-label="Filters">
+      <div id="chips" class="chips" role="group" aria-label="Category"></div>
+      <button id="clearSaved" class="link-btn" type="button" hidden>Clear all saved</button>
+      <label class="sort">Sort
+        <select id="sortSelect">
+          <option value="az">Name A–Z</option>
+          <option value="za">Name Z–A</option>
+        </select>
+      </label>
+    </section>
+
+    <p id="status" class="status" aria-live="polite"></p>
+    <div id="results" class="grid"></div>
+    <div class="more-wrap"><button id="moreBtn" class="btn" type="button" hidden>Load more</button></div>
+    <div id="message" class="message" hidden></div>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <footer class="foot wrap">
+    <p>Recipe Shelf · Data from <a href="https://www.themealdb.com" target="_blank" rel="noopener">TheMealDB</a> · Saved recipes stay in your browser.</p>
+  </footer>
+
+  <dialog id="modal" aria-labelledby="modalTitle">
+    <button id="modalClose" class="close" type="button" aria-label="Close">×</button>
+    <div id="modalBody"></div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
